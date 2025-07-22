@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($check_result && $check_result->num_rows > 0) {
                 $sql = "UPDATE config_setups SET data = '$value', status = 1 WHERE label = '$label'";
-            } else {
+            } else { 
                 $sql = "INSERT INTO config_setups (label, data, status) VALUES ('$label', '$value', 1)";
             }
 

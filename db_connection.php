@@ -1,9 +1,10 @@
 <?php
-$servername = "localhost";
+$servername = "localhost";                                                                                                                                
 $username   = "root";
-$password   = "";
+$password   = "root";
 $dbname     = "setup_config";
 
+    
 // Step 1: Connect to MySQL server (no database yet)
 $conn = new mysqli($servername, $username, $password);
 
@@ -20,7 +21,6 @@ if ($conn->connect_error) {
     </body>
     </html>");
 }
-
 // Step 2: Check if database exists
 $db_check = $conn->query("SHOW DATABASES LIKE '$dbname'");
 if ($db_check->num_rows == 0) {
