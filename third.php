@@ -12,23 +12,21 @@
 <body>
 
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="card shadow wide-card">
-                    <img src="assets/image/ihrms-logo.png" alt="ihrms logo" class="img-fluid ">
-                    
-                    <div class="card-body">
-                        <p>All right, sparky! You’ve made it through this part of the installation. WordPress can now
-                            communicate with your database. If you are ready, time now to…
-
-                        </p>
-
-
-                        <a href="#" class="btn btn-primary float-end">Run the installation</a>
-                    </div>
+      <div class="container">
+        <div class="card shadow wide-card">
+          <div class="card-body">
+            <!-- Logo -->
+            <div class="text-center mb-3">
+              <img src="assets/image/ihrms-logo.png" alt="ihrms logo" class="img-fluid">
+            </div>
+            <div class="card-body">
+                <p>All right, sparky! You’ve made it through this part of the installation. iHRMS can now
+                            communicate with your database. If you are ready, time now to…</p>
+                    <a href="#" class="btn btn-primary float-end">Run the installation</a>
+                </div>
                 </div>
             </div>
-        </div>
+  
     </body>
 
 </html>

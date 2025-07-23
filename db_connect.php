@@ -1,6 +1,6 @@
 <?php
 function connectDatabase($host, $user, $pass, $dbname) {
-    // Enable error reporting to debug issues easily
+    // Enable error reporting for debugging purposes
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 
     try {
@@ -14,7 +14,7 @@ function connectDatabase($host, $user, $pass, $dbname) {
         
         return $conn;
     } catch (Exception $e) {
-        // Return null on error and log the exception
+        // Log the exception message and return null
         error_log($e->getMessage());
         return null;
     }
