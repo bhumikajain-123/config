@@ -1,5 +1,6 @@
 <?php
 require_once '../db_connect.php'; // Adjust path if needed
+session_start();
 
 # Disable PHP error display, show custom message only
 ini_set('display_errors', '0');
@@ -24,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } else {
         #echo 'Success: Database connection established!';
+        $_SESSION['db_host'] = $db_host;
+        $_SESSION['db_user'] = $db_user;
+        $_SESSION['db_pass'] = $db_pass;
+        $_SESSION['db_name'] = $db_name;
         header("Location: ../third");
         exit;
     }

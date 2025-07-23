@@ -22,7 +22,9 @@
             <div class="card-body">
                 <p>All right, sparky! You’ve made it through this part of the installation. iHRMS can now
                             communicate with your database. If you are ready, time now to…</p>
-                    <a href="#" class="btn btn-primary float-end">Run the installation</a>
+                    <form method="post" action="frmaction/install.php">
+                        <button type="submit" class="btn btn-primary float-end">Run the installation</button>
+                    </form>
                 </div>
                 </div>
             </div>
