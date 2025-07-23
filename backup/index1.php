@@ -12,7 +12,7 @@
       padding: 20px;
     }
     .wide-card img {
-      width: 100px;
+      width: 50px;
     }
     .wide-card ol,
     .wide-card p {

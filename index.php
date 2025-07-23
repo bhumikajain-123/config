@@ -1,109 +1,71 @@
-<?php
-include 'db_connection.php';
-
-
-// Check if database exists
-$db_exists = $conn->select_db($dbname);
-if (!$db_exists) {
-    die("<h3>Database 'table_config' does not exist. Please create the database first.</h3>");
-}
-
-
-// Check table existence
-$tableCheck = $conn->query("SHOW TABLES LIKE 'config_setups'");
-if ($tableCheck->num_rows == 0) {
-    // Table doesn't exist — create it
-    $createTableSQL = "CREATE TABLE `config_setups` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `label` varchar(200) NOT NULL,
-        `data` varchar(200) NOT NULL,
-        `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-        `status` tinyint(1) NOT NULL,
-        PRIMARY KEY (`id`)
-    )";
-    if (!$conn->query($createTableSQL)) {
-        die("<h3>Error creating table: " . $conn->error . "</h3>");
-    }
-}
-//=========================================================================================================
-// Count rows
-$sql = "SELECT * FROM config_setups WHERE status IN (0, 1) LIMIT 13";
-$result = $conn->query($sql);
-$rowCount = ($result) ? $result->num_rows : 0;
-
-if ($rowCount != 13) {
-    // Not setup
-    ?>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <title>Redirecting...</title>
-      <script>
-        let countdown = 5; // Starting countdown value
-        function startRedirectCountdown() {
-            const countdownElement = document.getElementById('countdown');
-            countdownElement.innerText = countdown;
-            const interval = setInterval(() => {
-                countdown--;
-                if (countdown > 0) {
-                    countdownElement.innerText = countdown;
-                } else {
-                    clearInterval(interval);
-                    window.location.href = "setup"; // Redirect after countdown
-                }
-            }, 1000);
-        }
-        window.onload = startRedirectCountdown;
-    </script>
-        <?php include 'fragment/header_script.php'; ?>
-    </head>
-    <body>
-<!-- Timer Here -->
-    <div class="container mt-5 text-center">
-        <div class="alert alert-warning">
-            You have not setup all details.<br>
-            Redirecting to setup page in <strong><span id="countdown">5</span> seconds</strong>...
-        </div>
-    </div>
-    <!-- end timer -->
-    </body>
-    </html>
-    <?php
-    exit;
-}
-?>
-
-<!-- Only runs if rowCount == 13 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Configuration</title>
-    <?php include 'fragment/header_script.php'; ?>
-     <script>
-        let countdown = 5; // seconds
-        function startRedirectCountdown() {
-            const countdownElement = document.getElementById('countdown');
-            const interval = setInterval(() => {
-                countdown--;
-                countdownElement.innerText = countdown;
-                if (countdown <= 0) {
-                    clearInterval(interval);
-                    window.location.href = "setup"; // Redirect
-                }
-            }, 1000);
-        }
-        window.onload = startRedirectCountdown;
-    </script>
+  <meta charset="UTF-8">
+  <title>Database Setup Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .wide-card {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .wide-card img {
+      width: 50px;
+    }
+    .wide-card ol,
+    .wide-card p {
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
-<body>
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6 frm-top">
-            <?php include 'form/already_configured.php'; ?>
+<body class="bg-light">
+
+  <div class="container">
+    <div class="card shadow wide-card">
+      <div class="card-body">
+
+        <!-- Logo -->
+        <div class="text-center mb-3">
+          <img src="image/ihrms-logo.png" alt="ihrms logo" class="img-fluid">
         </div>
-        <div class="col-sm-3"></div>
+
+        <!-- Title -->
+        <h5 class="card-title text-center mb-3">Database Configuration</h5>
+
+        <!-- Form -->
+        <form action="save_config.php" method="POST">
+          <div class="mb-3">
+            <label for="db_name" class="form-label">Database Name</label>
+            <input type="text" class="form-control" id="db_name" name="db_name" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="db_user" class="form-label">Username</label>
+            <input type="text" class="form-control" id="db_user" name="db_user" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="db_pass" class="form-label">Password</label>
+            <input type="password" class="form-control" id="db_pass" name="db_pass">
+          </div>
+
+          <div class="mb-3">
+            <label for="db_host" class="form-label">Database Host</label>
+            <input type="text" class="form-control" id="db_host" name="db_host" value="localhost" required>
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex justify-content-between mt-4">
+        
+            <button type="submit" class="btn btn-primary float-end">Save Configuration</button>
+          </div>
+        </form>
+
+      </div>
     </div>
-</div>
+  </div>
+
 </body>
 </html>
