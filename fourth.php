@@ -1,3 +1,16 @@
+<?php
+function getFullBaseUrl() {
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+    $host = $_SERVER['HTTP_HOST'];
+    $script = $_SERVER['SCRIPT_NAME'];
+    $folder = str_replace(basename($script), '', $script);
+
+    return $protocol . $host . $folder;
+}
+
+$baseUrl = getFullBaseUrl();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,10 +44,11 @@
                             Please provide the following information. Do not worry, you can always change these
                             settings later.
                         </p>
+
                         <form>
                             <div class="mb-3">
-                                <label for="title" class="form-label">Site Title</label>
-                                <input type="text" id="title" name="title" class="form-control" required>
+                                <label for="title" class="form-label">Base url</label>
+                                <input type="text" id="title" name="title" class="form-control" readonly value="<?php echo $baseUrl; ?>" required>
                             </div>
 
                             <div class="mb-3">
