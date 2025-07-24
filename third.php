@@ -1,4 +1,4 @@
-<?php include_once 'frmaction/done_db_setup.php'; ?>
+<?php #include_once 'frmaction/done_db_setup.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +24,7 @@
             <div class="card-body">
                 <p>All right, sparky! You’ve made it through this part of the installation. iHRMS can now
                             communicate with your database. If you are ready, time now to…</p>
-                    <form method="post" action="frmaction/install.php">
+                    <form method="post" action="fourth">
                         <button type="submit" class="btn btn-primary float-end">Run the installation</button>
                     </form>
                 </div>

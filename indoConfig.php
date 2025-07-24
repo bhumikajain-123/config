@@ -6,7 +6,7 @@ define('DB_NAME', 'dbsetup');
 define('DB_USER', 'root');
 
 /** Database password */
-define('DB_PASSWORD', 'root');
+define('DB_PASSWORD', 'rweqq');
 
 /** Database host */
 define('DB_HOST', 'localhost');
