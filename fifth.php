@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>iHRMS Setup</title>
+    <title>Mail-iHRMS Setup </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -15,6 +15,7 @@
             <div class="card shadow wide-card">
                 <div class="text-center ">
                     <img src="assets/image/ihrms-logo.png" alt="ihrms logo" class="img-fluid">
+                    <h5 class="mt-4 text-primary"> Mail Setup</h5>
                 </div>
                 <div class="card-body">
                     <form action="frmaction/mail_frm.php" method="post">
