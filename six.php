@@ -13,7 +13,9 @@
     <div class="container">
         <div class="row">
             <div class="card shadow wide-card">
-                <img src="assets/image/ihrms-logo.png" alt="ihrms logo" class="img-fluid ">
+                <div class="text-center ">
+                    <img src="assets/image/ihrms-logo.png" alt="ihrms logo" class="img-fluid">
+                </div>
                 <h2>Success</h2>
                  <div class="card-body">
                     <p>iHRMS has been installed.Thankyou and enjoy!  </p>

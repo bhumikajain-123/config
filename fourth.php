@@ -58,7 +58,7 @@ $baseUrl = getFullBaseUrl();
 
                           
 
-                            <button type="submit" class="btn btn-primary float-end">iHRMS</button>
+                            <button type="submit" class="btn btn-primary float-end">Install iHRMS</button>
                         </form>
 
 

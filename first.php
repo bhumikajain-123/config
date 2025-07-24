@@ -22,7 +22,7 @@
         <h5 class="card-title text-center mb-3">Database Configuration</h5>
 
         <!-- Form -->
-        <form action="frmaction/db_configure_frm" method="POST">
+        <form action="frmaction/db_configure_frm.php" method="POST">
           <div class="mb-3">
             <label for="db_name" class="form-label">Database Name</label>
             <input type="text" class="form-control" id="db_name" name="db_name" required>
