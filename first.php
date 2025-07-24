@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Database Setup Form</title>
+  <title>iHRMS Setup</title>  
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -22,7 +22,7 @@
         <h5 class="card-title text-center mb-3">Database Configuration</h5>
 
         <!-- Form -->
-        <form action="frmaction/db_configure_frm.php" method="POST">
+        <form action="frmaction/db_configure_frm" method="POST">
           <div class="mb-3">
             <label for="db_name" class="form-label">Database Name</label>
             <input type="text" class="form-control" id="db_name" name="db_name" required>
