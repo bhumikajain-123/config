@@ -20,28 +20,28 @@
                     <form action="frmaction/mail_frm.php" method="post">
                         <div class="form-group">
                             <label for="email_id" class="col-form-label">E-mail:</label>
-                            <input type="email" class="form-control" id="email_id" name="mailsetup_email"
+                            <input type="email" class="form-control" id="email_id" required name="mailsetup_email"
                                 value="<?php echo $saved_data['mailsetup_email'] ?? ''; ?>">
                         </div>
                         <div class="form-group">
                             <label for="password" class="col-form-label">Password:</label>
-                            <input type="password" class="form-control" id="password" name="mailsetup_password"
+                            <input type="password" class="form-control" id="password" required name="mailsetup_password"
                                 value="<?php echo $saved_data['mailsetup_password'] ?? ''; ?>">
                         </div>
                         <div class="form-group">
                             <label for="email_host" class="col-form-label">Email Host (e.g. SMTP):</label>
-                            <input type="text" class="form-control" id="email_host" name="mailsetup_host"
+                            <input type="text" class="form-control" id="email_host" required name="mailsetup_host"
                                 value="<?php echo $saved_data['mailsetup_host'] ?? ''; ?>">
                         </div>
                         <div class="form-group">
                             <label for="port" class="col-form-label">Port:</label>
-                            <input type="text" maxlength="4" class="form-control" id="port" name="mailsetup_port"
+                            <input type="text" maxlength="4" class="form-control" required id="port" name="mailsetup_port"
                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                 value="<?php echo $saved_data['mailsetup_port'] ?? ''; ?>">
                         </div>
                         <div class="form-group">
                             <label for="mail_encryption" class="col-form-label">Mail Encryption:</label>
-                            <select name="mailsetup_encryption" id="mail_encryption" class="form-control">
+                            <select name="mailsetup_encryption" id="mail_encryption" required class="form-control">
                                 <option value="">-- select --</option>
                                 <option value="TLS"
                                     <?php if (($saved_data['mailsetup_encryption'] ?? '') === 'TLS') echo 'selected'; ?>>

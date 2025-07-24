@@ -16,11 +16,10 @@
                 <div class="text-center ">
                     <img src="assets/image/ihrms-logo.png" alt="ihrms logo" class="img-fluid">
                 </div>
-                <h2>Success</h2>
-                 <div class="card-body">
-                    <p>iHRMS has been installed.Thankyou and enjoy!  </p>
-                   
-                    <a href="#" class="btn btn-primary float-end">Log in</a>
+                <h2 class="text-center text-success mt-5">Success</h2>
+                 <div class="card-body text-center">
+                    <p class="text-success fw-bold">iHRMS has been installed.Thankyou and enjoy!  </p>
+                    <a href="#" class="btn btn-primary">Log in</a>
                 </div>
             </div>
         </div>
