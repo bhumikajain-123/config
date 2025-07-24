@@ -1,31 +1,22 @@
 <?php
-session_start();
+
 require_once '../db_connect.php';
 
-// Check if DB config exists
-if (empty($_SESSION['db_host']) || empty($_SESSION['db_user']) || !isset($_SESSION['db_pass']) || empty($_SESSION['db_name'])){
-    #die("Database configuration missing. Please go back to the previous step.");
-     #echo 'Error: Unable to connect to the database. Please check the credentials and try again.';
-    header("Location: ../error");
-    exit;
-}
+// Get DB credentials from form
+$db_host = trim($_POST['db_host']);
+$db_user = trim($_POST['db_user']);
+$db_pass = trim($_POST['db_pass']);
+$db_name = trim($_POST['db_name']);
 
-// Get credentials from session
-$db_host = $_SESSION['db_host'];
-$db_user = $_SESSION['db_user'];
-$db_pass = $_SESSION['db_pass'];
-$db_name = $_SESSION['db_name'];
-
-// Connect to database
+// Test DB connection
 $conn = connectDatabase($db_host, $db_user, $db_pass, $db_name);
 if (!$conn) {
-    #die("Failed to connect to the database.");
     header("Location: ../error");
     exit;
 }
 
-// SQL for table
-$sql = "CREATE TABLE IF NOT EXISTS `config_setups` (
+// Create required table
+$sql = "CREATE TABLE IF NOT EXISTS `indoadmin`(
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `label` varchar(200) NOT NULL,
     `data` varchar(200) NOT NULL,
@@ -37,11 +28,34 @@ $sql = "CREATE TABLE IF NOT EXISTS `config_setups` (
 try {
     $conn->query($sql);
     $conn->close();
+
+    // Rename and update config file
+    $sampleFile = '../sample-indoConfig.php';
+    $targetFile = '../indoConfig.php';
+
+    if (!file_exists($sampleFile)) {
+        die("Sample config file not found.");
+    }
+
+    // Rename sample file to active config
+    if (!rename($sampleFile, $targetFile)) {
+        die("Failed to rename config file.");
+    }
+
+    // Replace placeholders
+    $configContent = file_get_contents($targetFile);
+    $configContent = str_replace("database_name_here", addslashes($db_name), $configContent);
+    $configContent = str_replace("username_here", addslashes($db_user), $configContent);
+    $configContent = str_replace("password_here", addslashes($db_pass), $configContent);
+    $configContent = str_replace("localhost", addslashes($db_host), $configContent);
+
+    // Save updated content
+    file_put_contents($targetFile, $configContent);
+
+    // Redirect to next step
     header("Location: ../fourth.php");
     exit;
 } catch (Exception $e) {
-    #echo "Installation failed: " . $e->getMessage();
     header("Location: ../error");
     exit;
 }
-?>

@@ -1,22 +1,39 @@
-<?php if(!isset($_SESSION)) { session_start(); }
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
+<?php 
 
 
-if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-    ####### Code for Localhost #######
-    $db_user = "";
-    $db_password = "";
-    $database_name = "";
-    $conn = mysqli_connect("localhost",$db_user,$db_password,$database_name);
-    defined("BASE_URL") OR define("BASE_URL", "");
-} else {
-    ########## Code for Server ##########
-    $db_user = "";
-    $db_password = "";
-    $database_name = "";
-    $conn = mysqli_connect("localhost",$db_user,$db_password,$database_name);
-    defined("BASE_URL") OR define("BASE_URL", "");
-}
+#####################################[ start ]#####################################
+define('DB_NAME', 'database_name_here');
+
+/** Database username */
+define('DB_USER', 'username_here');
+
+/** Database password */
+define('DB_PASSWORD', 'password_here');
+
+/** Database hostname **/
+define('DB_HOST', 'localhost');
+
+/** Database charset to use in creating database tables. */
+define('DB_CHARSET', 'utf8' );
+
+// if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+//     ####### Code for Localhost #######
+//     $db_user = "";
+//     $db_password = "";
+//     $database_name = "";
+//     $conn = mysqli_connect("localhost",$db_user,$db_password,$database_name);
+//     defined("BASE_URL") OR define("BASE_URL", "");
+// } else {
+//     ########## Code for Server ##########
+//     $db_user = "";
+//     $db_password = "";
+//     $database_name = "";
+//     $conn = mysqli_connect("localhost",$db_user,$db_password,$database_name);
+//     defined("BASE_URL") OR define("BASE_URL", "");
+// }
+
+######################################################################################
+
 
 define("INDOSALT", "");
 define('ACCESS_KEY','');
@@ -40,7 +57,7 @@ $expstagesarr = ['submitted'=>'1. Documents submitted','courier_received'=>'2. C
 $leaves_inc_interval = ['1'=>'Monthly','2'=>'Quarterly','3'=>'Half Yearly','4'=>'Yearly'];
 define('LEAVE_QUOTA_INCREASE_INTERVAL',serialize($leaves_inc_interval));
 
-require_once('pdo/database.php');
+#require_once('pdo/database.php');
 
 
 

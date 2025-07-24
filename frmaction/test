@@ -1,0 +1,48 @@
+<?php
+require_once '../db_connect.php'; // Adjust path as needed
+
+// Hide PHP errors from user
+ini_set('display_errors', '0');
+error_reporting(E_ALL);
+
+// Check if the request is POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get submitted form data
+    $db_host = $_POST['db_host'] ?? '';
+    $db_user = $_POST['db_user'] ?? '';
+    $db_pass = $_POST['db_pass'] ?? '';
+    $db_name = $_POST['db_name'] ?? '';
+
+    // Try database connection
+    $conn = connectDatabase($db_host, $db_user, $db_pass, $db_name);
+
+    if ($conn === null) {
+        // Connection failed, redirect to error page
+        header("Location: ../error");
+        exit;
+    }
+
+    // Path where indoConfig.php will be created
+    $configPath = dirname(__DIR__) . '/indoConfig.php';
+
+    // Only create indoConfig.php if it doesn't already exist
+    if (!file_exists($configPath)) {
+        // Prepare the PHP config content
+        $configContent = "<?php\n";
+        $configContent .= "/** The name of the database */\n";
+        $configContent .= "define('DB_NAME', '" . addslashes($db_name) . "');\n\n";
+        $configContent .= "/** Database username */\n";
+        $configContent .= "define('DB_USER', '" . addslashes($db_user) . "');\n\n";
+        $configContent .= "/** Database password */\n";
+        $configContent .= "define('DB_PASSWORD', '" . addslashes($db_pass) . "');\n\n";
+        $configContent .= "/** Database host */\n";
+        $configContent .= "define('DB_HOST', '" . addslashes($db_host) . "');\n";
+
+        // Write the content to indoConfig.php
+        file_put_contents($configPath, $configContent);
+    }
+
+    // Redirect to the next installation step
+    header("Location: ../third");
+    exit;
+}

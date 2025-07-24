@@ -43,7 +43,7 @@ try {
         $dataEscaped = $conn->real_escape_string($data);
 
         // Check if label already exists
-        $checkQuery = "SELECT COUNT(*) AS count FROM config_setups WHERE label = '$labelEscaped'";
+        $checkQuery = "SELECT COUNT(*) AS count FROM indoadmin WHERE label = '$labelEscaped'";
         $result = $conn->query($checkQuery);
 
         if ($result) {
