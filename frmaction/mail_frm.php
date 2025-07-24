@@ -32,7 +32,7 @@ if (
     die("All fields are required.");
 }
 
-// Data to insert
+// Data to insert or update
 $configData = [
     'mailsetup_email'      => $mailsetup_email,
     'mailsetup_password'   => $mailsetup_password,
@@ -45,6 +45,7 @@ try {
     foreach ($configData as $label => $data) {
         // Escape inputs
         $labelEscaped = $conn->real_escape_string($label);
+        $dataEscaped = $conn->real_escape_string($data);
 
         // Check if label already exists
         $checkQuery = "SELECT COUNT(*) AS count FROM config_setups WHERE label = '$labelEscaped'";
@@ -53,9 +54,14 @@ try {
         if ($result) {
             $row = $result->fetch_assoc();
             if ((int)$row['count'] === 0) {
-                $dataEscaped = $conn->real_escape_string($data);
+                // Insert if not exists
                 $insertQuery = "INSERT INTO config_setups (label, data, status) VALUES ('$labelEscaped', '$dataEscaped', 1)";
                 $conn->query($insertQuery);
+            } else {
+                // Update if exists
+                $updateQuery = "UPDATE config_setups SET data = '$dataEscaped' WHERE label = '$labelEscaped'";
+                $conn->query($updateQuery);
+
             }
         } else {
             throw new Exception("Query failed: " . $conn->error);
