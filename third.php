@@ -1,3 +1,5 @@
+<?php include_once 'frmaction/done_db_setup.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
