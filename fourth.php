@@ -1,8 +1,19 @@
-<?php
-$configFilePath = 'indoConfig.php';
-if (!file_exists($configFilePath)) {
-     include 'index1.php';
-}else{
+<?php 
+#$configFilePath = 'indoConfig.php';
+#include_once 'frmaction/check_db_setup.php'; 
+
+// Include the setup check function
+require_once 'setup_check.php';
+
+// Perform the setup check
+if (!checkSetupAndRedirect()) {
+    // If the setup fails, user will be redirected already
+    exit;
+}else{ 
+    #Your page logic here (if setup is valid)
+    #echo "Setup is complete. You can access the page.";
+}
+
 function getFullBaseUrl() {
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $host = $_SERVER['HTTP_HOST'];
@@ -96,8 +107,5 @@ $baseUrl = getFullBaseUrl();
         </div>
         </div>
     </body>
-
 </html>
-
 </body>
-<?php }  ?>

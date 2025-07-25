@@ -1,3 +1,21 @@
+<?php 
+#$configFilePath = 'indoConfig.php';
+#include_once 'frmaction/check_db_setup.php'; 
+?>
+<?php
+// Include the setup check function
+require_once 'setup_check.php';
+
+// Perform the setup check
+if (!checkSetupAndRedirect()) {
+    // If the setup fails, user will be redirected already
+    exit;
+}else{ 
+    #Your page logic here (if setup is valid)
+    #echo "Setup is complete. You can access the page.";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

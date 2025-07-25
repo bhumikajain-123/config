@@ -1,5 +1,17 @@
 
+<?php
+// Include the setup check function
+require_once 'setup_check.php';
 
+// Perform the setup check
+if (!checkSetupAndRedirect()) {
+    // If the setup fails, user will be redirected already
+    exit;
+}else{ 
+    #Your page logic here (if setup is valid)
+    #echo "Setup is complete. You can access the page.";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,10 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Error-iHRMS Setup</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-  <link rel="stylesheet" href="assets/css/style.css">
-
-    
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
