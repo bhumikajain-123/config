@@ -24,7 +24,7 @@
                 <h5 class="card-title text-center text-primary mt-2">Database Configuration</h5>
                 <?php
                     include (file_exists('indoConfig.php') ? 'indoConfig.php' : 'sample-indoConfig.php');
-                   ;
+                   
                 ?>
                 <!-- Form -->
                 <form action="frmaction/db_configure_frm.php" method="POST">

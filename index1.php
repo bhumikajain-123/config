@@ -1,11 +1,3 @@
-<?php
-
-$configFilePath = 'indoConfig.php';
-if (file_exists($configFilePath)) {
- include_once 'frmaction/done_db_setup.php'; 
-}else{
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,4 +31,3 @@ if (file_exists($configFilePath)) {
 </body>
 
 </html>
-<?php }  ?>

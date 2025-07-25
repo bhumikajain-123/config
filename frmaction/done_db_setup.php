@@ -1,7 +1,8 @@
 <?php
 # Here check if indoconfig exith then below code run if not then not show
 $configFilePath = 'indoConfig.php';
-if (file_exists($configFilePath)) { ?>
+if (file_exists($configFilePath)) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 

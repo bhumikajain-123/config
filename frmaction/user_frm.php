@@ -1,6 +1,15 @@
-<?php 
-require_once '../indoConfig.php';      // DB credentials
-require_once '../db_connect.php';      // connectDatabase function
+<?php
+// Attempt to locate and include indoConfig.php safely
+$configPath = realpath(__DIR__ . '/../indoConfig.php');
+if ($configPath && file_exists($configPath)) {
+    require_once $configPath;
+} else {
+    header('Location: ../index.php');
+    exit;
+}
+
+// DB credentials
+require_once '../db_connect.php'; // connectDatabase function
 
 // Get form data
 $title    = trim($_POST['title'] ?? '');
@@ -13,13 +22,14 @@ if (!$title || !$username || !$password || !$email) {
     die("All fields are required.");
 }
 
-// Connect using indoConfig.php
+// Connect using indoConfig constants
 $conn = connectDatabase(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 if (!$conn) {
-    die("Database connection failed.");
+    header('Location: ../error.php');
+    exit();
 }
 
-// 1. Create indoadmin table
+// Create indoadmin table
 $createIndoAdminTable = "CREATE TABLE IF NOT EXISTS `indoadmin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `indo_code` varchar(30) NOT NULL,
@@ -47,15 +57,13 @@ $createIndoAdminTable = "CREATE TABLE IF NOT EXISTS `indoadmin` (
 
 $conn->query($createIndoAdminTable);
 
-// 2. Insert initial superadmin record
+// Insert superadmin if not exists
 $hashedPassword = md5($password);
-
 $usernameEscaped = $conn->real_escape_string($username);
 $passwordEscaped = $conn->real_escape_string($hashedPassword);
 $emailEscaped    = $conn->real_escape_string($email);
 $titleEscaped    = $conn->real_escape_string($title);
 
-// Check if superadmin already exists
 $checkQuery = "SELECT COUNT(*) as count FROM indoadmin WHERE user_type = 'superadmin'";
 $result = $conn->query($checkQuery);
 $row = $result->fetch_assoc();

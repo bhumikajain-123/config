@@ -19,7 +19,7 @@
                 <h2 class="text-center text-success mt-5">Success</h2>
                  <div class="card-body text-center">
                     <p class="text-success fw-bold">iHRMS has been installed.Thankyou and enjoy!  </p>
-                    <a href="#" class="btn btn-primary">Log in</a>
+                    <a href="https://info.indovisionservices.in/v14//" class="btn btn-primary">Log in</a>
                 </div>
             </div>
         </div>
