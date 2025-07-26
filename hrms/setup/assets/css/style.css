@@ -1,0 +1,12 @@
+.wide-card {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .wide-card img {
+      width: 50px;
+    }
+    .wide-card ol,
+    .wide-card p {
+      font-size: 0.95rem;
+    }

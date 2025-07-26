@@ -1,21 +1,16 @@
 <?php 
-#$configFilePath = 'indoConfig.php';
-#include_once 'frmaction/check_db_setup.php'; 
+// $configFilePath = 'indoConfig.php';
+// include_once 'frmaction/check_db_setup.php'; 
 ?>
 <?php
-// Include the setup check function
 require_once 'setup_check.php';
 
-// Perform the setup check
-if (!checkSetupAndRedirect()) {
-    // If the setup fails, user will be redirected already
-    exit;
-}else{ 
-    #Your page logic here (if setup is valid)
-    #echo "Setup is complete. You can access the page.";
-}
-?>
+// Just call the function — no need to check return
+checkSetupAndRedirect();
 
+// If function does not exit (which it always should), handle fallback
+#echo "Unexpected fallback. Something went wrong.";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,3 +45,4 @@ if (!checkSetupAndRedirect()) {
 </body>
 
 </html>
+<?php exit; ?>

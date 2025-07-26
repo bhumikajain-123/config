@@ -3,15 +3,20 @@
 // Include the setup check function
 require_once 'setup_check.php';
 
+
 // Perform the setup check
 if (!checkSetupAndRedirect()) {
     // If the setup fails, user will be redirected already
+    echo "Setup fail";
+    #header('Location: index.php');
     exit;
 }else{ 
     #Your page logic here (if setup is valid)
     #echo "Setup is complete. You can access the page.";
+     header('Location: https://info.indovisionservices.in/v14/');
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
