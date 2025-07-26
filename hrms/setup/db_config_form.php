@@ -1,9 +1,4 @@
-<?php
-if (file_exists(__DIR__ . '/../indoConfig.php')) {
-    header('Location: ../login.php');
-    exit;
-}
-?>
+<?php require_once 'check_setup.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

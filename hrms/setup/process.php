@@ -20,7 +20,11 @@ $configContent .= "define('DB_PASS', '$db_pass');\n";
 $configContent .= "define('DB_NAME', '$db_name');\n";
 $configContent .= "?>";
 
+
 file_put_contents(__DIR__ . '/../indoConfig.php', $configContent);
-header("Location: success.php");
+#header("Location: success.php");
+
+
+header("Location: db_user_form.php");
 exit;
 ?>

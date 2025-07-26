@@ -1,7 +1,7 @@
 <?php
-function db_connect($host, $user, $pass, $name) {
+function db_connect($DB_DB_NAME, $DB_USER, $DBDB_PASS, $DB_NAME) {
     try {
-        $conn = new mysqli($host, $user, $pass, $name);
+        $conn = new mysqli($DB_DB_NAME, $DB_USER, $DBDB_PASS, $DB_NAME);
         if ($conn->connect_error) {
             return false;
         }

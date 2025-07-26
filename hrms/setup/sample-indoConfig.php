@@ -1,6 +1,4 @@
 <?php
-require_once 'check_setup.php';
-
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
